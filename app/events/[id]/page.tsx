@@ -219,14 +219,14 @@ const EventDetails: React.FC = () => {
                   </button>
                 )}
 
-                {isOrganizer && (
+                {/* {isOrganizer && (
                   <button
                     onClick={() => router.push(`/events/edit/${id}`)}
                     className="btn-outline flex-1 py-3"
                   >
                     Edit Event
                   </button>
-                )}
+                )} */}
 
                 <button
                   onClick={() => router.back()}

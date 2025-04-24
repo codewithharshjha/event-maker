@@ -41,7 +41,7 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
   const userId = getUserIdFromRequest(req)
  ;
   if (!userId) return NextResponse.json({ msg: "Unauthorized" }, { status: 401 });
-  const id=await params.id
+  const id= params.id
   const event = await Event.findById(id);
   if (!event) return NextResponse.json({ msg: "Event not found" }, { status: 404 });
 
@@ -50,6 +50,6 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     return NextResponse.json({ msg: "Not authorized" }, { status: 403 });
   }
 
-  await event.remove();
+  await event.deleteOne();
   return NextResponse.json({ msg: "Event deleted" });
 }
