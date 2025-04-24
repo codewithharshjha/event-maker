@@ -14,7 +14,7 @@ try {
   const category = searchParams.get("category");
   const search = searchParams.get("search");
 
-  const query: FilterQuery<Event> = {};
+  const query: FilterQuery<IEvent> = {};
 
   if (category) {
     query.category = category;
