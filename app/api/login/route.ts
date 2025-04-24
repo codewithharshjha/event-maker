@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken"
 export async function POST(req:NextRequest){
     const {email,password}=await req.json()
     try {
-        let user=await User.findOne({email})
+        const user=await User.findOne({email})
         if (!user) {
             return NextResponse.json({status:400, msg: 'Invalid credentials' });
           }

@@ -40,7 +40,7 @@ const MyBookings = () => {
               <h2 className="text-xl font-semibold mb-2">{booking.event.title}</h2>
               <div className="space-y-2 mb-4">
                 <p className="text-gray-600">
-                  <span className="font-semibold">Date:</span> {new Date(booking.event.date).toLocaleDateString()}
+                  <span className="font-semibold">Date:</span>{new Date(booking.event.date).toLocaleDateString()}
                 </p>
                 <p className="text-gray-600">
                   <span className="font-semibold">Time:</span> {booking.event.time}
@@ -86,7 +86,7 @@ const MyBookings = () => {
         </div>
       ) : (
         <div className="text-center py-8">
-          <p className="text-gray-600 text-lg mb-4">You haven't made any bookings yet.</p>
+          <p className="text-gray-600 text-lg mb-4">You have not made any bookings yet.</p>
           <Link
             href="/"
             className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600"

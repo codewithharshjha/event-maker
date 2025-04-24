@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-;import Event from "@/models/Event";
-import User from "@/models/User";
+;import Event from "../../../models/Event";
+import User from "../../../models/User";
 
 import connectDb from "../../../config/db"
 import { getUserIdFromRequest } from "@/middleware/auths";

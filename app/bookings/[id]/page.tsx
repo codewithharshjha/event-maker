@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter, useParams } from 'next/navigation';
-import { BookingType, Event } from '@/types/type';
+import { BookingType } from '@/types/type';
 
 // Define Event and Booking types
 // interface EventType {
@@ -15,9 +15,7 @@ import { BookingType, Event } from '@/types/type';
 //   description: string;
 // }
 
-interface Seat {
-  seatNumber: string;
-}
+
 
 
 

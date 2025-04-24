@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import { useAuth } from '../../../context/AuthContext';
 import SeatSelector from '../../../components/events/SeatSelector';
 import { useParams, useRouter } from 'next/navigation';
-import { Event, Seat } from '@/types/type';
+import { Event, Seat } from '../../../types/type';
 
 const EventDetails: React.FC = () => {
   const params = useParams();

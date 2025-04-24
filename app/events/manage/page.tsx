@@ -25,7 +25,7 @@ const ManageEvents = () => {
   }, []);
 
   const handleDeleteEvent = async (eventId:string) => {
-    const id=eventId
+   
     if (window.confirm('Are you sure you want href delete this event? This action cannot be undone.')) {
       try {
         await axios.delete(`/api/event/${eventId}`);
@@ -101,7 +101,7 @@ const ManageEvents = () => {
         </div>
       ) : (
         <div className="text-center py-8">
-          <p className="text-gray-600 text-lg mb-4">You haven't created any events yet.</p>
+          <p className="text-gray-600 text-lg mb-4">You have not created any events yet.</p>
           <Link
             href="/events/create"
             className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600"
