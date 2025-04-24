@@ -180,8 +180,8 @@ const Register: React.FC = () => {
                 <option value="organizer">Event Organizer</option>
               </select>
               <p className="mt-1 text-sm text-gray-500">
-                Select "Event Organizer" if you want to create and manage events.
-              </p>
+  Select &quot;Event Organizer&quot; if you want to create and manage events.
+</p>
             </div>
 
             {/* Submit */}
