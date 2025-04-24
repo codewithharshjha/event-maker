@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Event from "@/models/Event";
 import User from "@/models/User";
 import connecttodb from "../../../../config/db";
-import { getUserIdFromRequest } from "@/middleware/auths";
+import { getUserIdFromRequest } from "../../../../middleware/auths";
 
 
 export async function GET(_: NextRequest, { params }: { params: { id: string } }) {

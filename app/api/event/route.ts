@@ -3,7 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 import User from "../../../models/User";
 
 import connectDb from "../../../config/db"
-import { getUserIdFromRequest } from "@/middleware/auths";
+import { getUserIdFromRequest } from "../../../middleware/auths";
+import { FilterQuery } from "mongoose";
+import { IEvent } from "../../../types/type";
 
 export async function GET(req: NextRequest) {
   await connectDb()
@@ -12,7 +14,7 @@ try {
   const category = searchParams.get("category");
   const search = searchParams.get("search");
 
-  const query: any = {};
+  const query: FilterQuery<Event> = {};
 
   if (category) {
     query.category = category;

@@ -8,6 +8,7 @@ import { useAuth } from '../../../context/AuthContext';
 import SeatSelector from '../../../components/events/SeatSelector';
 import { useParams, useRouter } from 'next/navigation';
 import { Event, Seat } from '../../../types/type';
+import Image from 'next/image';
 
 const EventDetails: React.FC = () => {
   const params = useParams();
@@ -15,7 +16,7 @@ const EventDetails: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
 
   const [event, setEvent] = useState<Event | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
   const [isBooking, setIsBooking] = useState<boolean>(false);
@@ -27,11 +28,14 @@ const EventDetails: React.FC = () => {
       try {
         const res = await axios.get(`/api/event/${id}`);
         setEvent(res.data);
-      } catch (err: any) {
-        console.error('Error fetching event details:', err);
-        setError('Failed to load event. Please try again later.');
-      } finally {
-        setLoading(false);
+      }  catch (err: unknown) {
+        if (axios.isAxiosError(err)) {
+          console.error('Error fetching event details:', err.response?.data || err.message);
+          setError('Failed to load event. Please try again later.');
+        } else {
+          console.error('Unexpected error:', err);
+          setError('An unexpected error occurred.');
+        }
       }
     };
 
@@ -62,11 +66,14 @@ const EventDetails: React.FC = () => {
 
       toast.success('Booking successful!');
       router.push('/bookings');
-    } catch (err: any) {
-      console.error('Booking error:', err);
-      toast.error(err?.response?.data?.msg || 'Failed to book tickets. Please try again.');
-    } finally {
-      setIsBooking(false);
+    }   catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        console.error('Error fetching event details:', err.response?.data || err.message);
+        setError('Failed to load event. Please try again later.');
+      } else {
+        console.error('Unexpected error:', err);
+        setError('An unexpected error occurred.');
+      }
     }
   };
 
@@ -120,7 +127,7 @@ const EventDetails: React.FC = () => {
           {/* Event Image */}
           <div className="relative h-64 md:h-80">
             {imageUrl ? (
-              <img src={imageUrl} alt={title} className="w-full h-full object-cover" />
+              <Image src={imageUrl} alt={title} className="w-full h-full object-cover" width={50} height={50}/>
             ) : (
               <div className="w-full h-full bg-gradient-to-r from-primary-400 to-primary-600 flex items-center justify-center">
                 <span className="text-white text-3xl font-bold">{title.substring(0, 1)}</span>

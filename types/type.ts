@@ -52,3 +52,17 @@ export interface Event {
     createdAt: string;
     status: 'pending' | 'confirmed' | 'cancelled';
   }
+  // types/event.ts
+export interface IEvent {
+  title: string;
+  description: string;
+  imageUrl?: string;
+  date: string;
+  time: string;
+  location: string;
+  organizer: string;
+  ticketPrice: number;
+  totalSeats: number;
+  availableSeats: number;
+  category: string;
+}

@@ -3,6 +3,7 @@ import React from 'react';
 import { format } from 'date-fns';
 import Link from 'next/link';
 import { Event } from '@/types/type';
+import Image from 'next/image';
 
 type EventCardProps = {
     event: Event;
@@ -18,9 +19,11 @@ type EventCardProps = {
       <div className="event-card h-full flex flex-col">
         <div className="relative h-48 w-full overflow-hidden">
           {imageUrl ? (
-            <img
+            <Image
               src={imageUrl}
               alt={title}
+              width={50}
+              height={50}
               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
