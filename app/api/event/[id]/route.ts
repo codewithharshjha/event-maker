@@ -5,10 +5,11 @@ import connecttodb from "../../../../config/db";
 import { getUserIdFromRequest } from "../../../../middleware/auths";
 
 
-export async function GET(_: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(_: NextRequest, {params}: {params: Promise<{ id: string }>}) {
   await connecttodb();
-  const id= params.id
+  const {id}=await params
   const event = await Event.findById(id).populate("organizer", ["name", "email"]);
+  console.log('from event id route get',event)
   if (!event) return NextResponse.json({ msg: "Event not found" }, { status: 404 });
 console.log('from event data',event)
   return NextResponse.json(event);

@@ -16,7 +16,7 @@ const EventDetails: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
 
   const [event, setEvent] = useState<Event | null>(null);
-  const [loading] = useState<boolean>(true);
+  const [loading,setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
   const [isBooking, setIsBooking] = useState<boolean>(false);
@@ -26,8 +26,12 @@ const EventDetails: React.FC = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
+
         const res = await axios.get(`/api/event/${id}`);
+        console.log('from frontend events/iid',res.data)
+
         setEvent(res.data);
+        setLoading(false)
       }  catch (err: unknown) {
         if (axios.isAxiosError(err)) {
           console.error('Error fetching event details:', err.response?.data || err.message);
