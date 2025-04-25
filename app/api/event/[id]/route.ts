@@ -14,10 +14,10 @@ console.log('from event data',event)
   return NextResponse.json(event);
 }
 
-export async function PUT(req: NextRequest, context: { params: { id: string } }) {
+export async function PUT(req: NextRequest, {params}: {params: Promise<{ id: string }>}) {
   await connecttodb();
   const userId = getUserIdFromRequest(req);
-  const id= context.params.id
+  const {id}=await params
   console.log("from event",id)
   if (!userId) return NextResponse.json({ msg: "Unauthorized" }, { status: 401 });
 

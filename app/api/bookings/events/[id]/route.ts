@@ -4,11 +4,11 @@ import Event from "../../../../../models/Event";
 import User from "../../../../../models/User";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req:NextRequest){
+export async function GET(req:NextRequest,{params}: {params: Promise<{ id: string }>}){
     try {
         const userId =getUserIdFromRequest(req);
-        const { searchParams } = new URL(req.url);
-        const id = await searchParams.get("id");
+       
+        const{ id} = await params;
         console.log('ffrom event data',id)
         const event = await Event.findById(id);
         
