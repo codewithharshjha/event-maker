@@ -37,12 +37,12 @@ export async function PUT(req: NextRequest, {params}: {params: Promise<{ id: str
   return NextResponse.json(updatedEvent);
 }
 
-export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, {params}: {params: Promise<{ id: string }>}) {
   await connecttodb();
   const userId = getUserIdFromRequest(req)
  ;
   if (!userId) return NextResponse.json({ msg: "Unauthorized" }, { status: 401 });
-  const id= context.params.id
+  const {id}= await params
   const event = await Event.findById(id);
   if (!event) return NextResponse.json({ msg: "Event not found" }, { status: 404 });
 

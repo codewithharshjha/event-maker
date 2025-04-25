@@ -22,7 +22,7 @@ export interface Event {
 }
 
   export type Seat = {
-    seatNumber: number;
+    seatNumber: string;
   };
   export type User = {
     _id: string;
