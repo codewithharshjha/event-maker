@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import Event from "../../../models/Event"
-import Booking from "@/models/Booking";
-import { getUserIdFromRequest } from "@/middleware/auths";
+import Booking from "../../../models/Booking";
+import { getUserIdFromRequest } from "../../../middleware/auths";
 
 export async function POST(req:NextRequest){
     try {

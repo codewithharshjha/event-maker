@@ -1,7 +1,7 @@
 // app/api/user/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import User from '@/models/User';
-import { getUserIdFromRequest } from '@/middleware/auths';
+import User from '../../../models/User';
+import { getUserIdFromRequest } from '../../../middleware/auths';
 
 export async function GET(req: NextRequest) {
   const userId = getUserIdFromRequest(req);

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import Event from "@/models/Event";
-import User from "@/models/User";
+import Event from "../../../../models/Event";
+import User from "../../../../models/User";
 import connecttodb from "../../../../config/db";
 import { getUserIdFromRequest } from "../../../../middleware/auths";
 
@@ -14,10 +14,10 @@ console.log('from event data',event)
   return NextResponse.json(event);
 }
 
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(req: NextRequest, context: { params: { id: string } }) {
   await connecttodb();
   const userId = getUserIdFromRequest(req);
-  const id= params.id
+  const id= context.params.id
   console.log("from event",id)
   if (!userId) return NextResponse.json({ msg: "Unauthorized" }, { status: 401 });
 
@@ -36,12 +36,12 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   return NextResponse.json(updatedEvent);
 }
 
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(req: NextRequest, context: { params: { id: string } }) {
   await connecttodb();
   const userId = getUserIdFromRequest(req)
  ;
   if (!userId) return NextResponse.json({ msg: "Unauthorized" }, { status: 401 });
-  const id= params.id
+  const id= context.params.id
   const event = await Event.findById(id);
   if (!event) return NextResponse.json({ msg: "Event not found" }, { status: 404 });
 

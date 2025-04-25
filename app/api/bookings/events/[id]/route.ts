@@ -1,7 +1,7 @@
 import { getUserIdFromRequest } from "@/middleware/auths";
-import Booking from "@/models/Booking";
-import Event from "@/models/Event";
-import User from "@/models/User";
+import Booking from "../../../../../models/Booking";
+import Event from "../../../../../models/Event";
+import User from "../../../../../models/User";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req:NextRequest){
